@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body id="body">
+
+    <style>
+        .textWhite {
+            color: white;
+        }
+
+        .textPurple {
+            color: purple;
+        }
+    </style>
+
+    <h1 id="text">DOM Manipulation</h1>
+
+    <button id="red">
+        RED
+    </button>
+    <button id="blue">
+        BLUE
+    </button>
+    <br>
+    <br>
+    <button id="white">
+        White
+    </button>
+    <button id="purple">
+        Purple
+    </button>
+    <br>
+    <br>
+
+
+    <button id="surprise">
+        Surprise Me
+    </button>
+    <button id="dont">
+        Don't Surprise Me
+    </button>
+
+
+    <script>
+        console.log("Hello")
+
+        // =====================================
+        // Changing style of an element directly through JS
+        function consoleRed(){
+            // Change the body background color to red
+            console.log("Red Clicked")
+            document.body.style.backgroundColor = 'red'
+        }
+        const redButton = document.getElementById('red')
+        const blueButton = document.getElementById('blue')
+
+        redButton.addEventListener('click', consoleRed)
+        blueButton.addEventListener('click', function(){
+            console.log("Blue Clicked")
+            document.body.style.backgroundColor = 'blue'
+        })
+
+        // =====================================
+        // Adding and removing predefined classes from an element using JS
+        // one approach is classList.add and classList.remove
+        // Another approach is using classList.setAttribute
+        const whiteButton = document.getElementById('white')
+        const purpleButton = document.getElementById('purple')
+        const h1_text = document.getElementById('text')
+
+        whiteButton.addEventListener('click', function(){
+            h1_text.classList.remove('textPurple')
+            h1_text.classList.add('textWhite')
+        })
+
+        purpleButton.addEventListener('click', function(){
+            console.log("Purple Clicked")
+            h1_text.classList.remove('textWhite')
+            h1_text.classList.add('textPurple')
+        })
+
+        // =====================================
+        // Creating and appending elements to DOM
+        const surpriseButton = document.getElementById('surprise')
+        const dontSurpriseButton = document.getElementById('dont')
+
+        surpriseButton.addEventListener('click', function(){
+            const textElement = document.createElement('p')
+            textElement.innerText = "You are surprised"
+            textElement.setAttribute('id', 'textInside')
+            document.body.appendChild(textElement)
+        })
+        dontSurpriseButton.addEventListener('click', function(){
+            const textToRemove = document.getElementById('textInside')
+            if(textToRemove){
+                textToRemove.remove()
+            }
+        })
+    </script>
+</body>
+</html>
